@@ -30,6 +30,8 @@ public class TodayWidgetProvider extends AppWidgetProvider {
 //            views.setImageViewResource(R.id.widget_icon, weatherArtResourceId);
             views.setTextViewText(R.id.home_name, "home name");
             views.setTextViewText(R.id.away_name, "away name");
+            views.setImageViewResource(R.id.home_crest, R.drawable.ic_launcher);
+            views.setImageViewResource(R.id.away_crest, R.drawable.ic_launcher);
 
             // Create an Intent to launch MainActivity
             Intent launchIntent = new Intent(context, MainActivity.class);
