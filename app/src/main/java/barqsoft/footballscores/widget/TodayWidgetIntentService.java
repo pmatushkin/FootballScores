@@ -15,7 +15,7 @@ import java.util.Date;
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
-import barqsoft.footballscores.Utilies;
+import barqsoft.footballscores.Utilities;
 import barqsoft.footballscores.scoresAdapter;
 
 /**
@@ -83,9 +83,9 @@ public class TodayWidgetIntentService extends IntentService {
             views.setTextViewText(R.id.home_name, homeTeam);
             views.setTextViewText(R.id.away_name, awayTeam);
             views.setTextViewText(R.id.data_textview, matchTime);
-            views.setTextViewText(R.id.score_textview, Utilies.getScores(homeGoals, awayGoals));
-            views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(homeTeam));
-            views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(awayTeam));
+            views.setTextViewText(R.id.score_textview, Utilities.getScores(homeGoals, awayGoals));
+            views.setImageViewResource(R.id.home_crest, Utilities.getTeamCrestByTeamName(homeTeam));
+            views.setImageViewResource(R.id.away_crest, Utilities.getTeamCrestByTeamName(awayTeam));
 
             // Create an Intent to launch MainActivity
             Intent launchIntent = new Intent(this, MainActivity.class);
