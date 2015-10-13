@@ -57,11 +57,16 @@ public class TodayWidgetIntentService extends IntentService {
                 null,
                 new String[] { dateFormat.format(date) },
                 DatabaseContract.scores_table.HOME_GOALS_COL + " DESC LIMIT 1");
+
         if (cursor == null) {
+            showEmptyWidget(appWidgetManager, appWidgetIds);
+
             return;
         }
         if (!cursor.moveToFirst()) {
             cursor.close();
+            showEmptyWidget(appWidgetManager, appWidgetIds);
+
             return;
         }
 
@@ -86,6 +91,22 @@ public class TodayWidgetIntentService extends IntentService {
             views.setTextViewText(R.id.score_textview, Utilities.getScores(homeGoals, awayGoals));
             views.setImageViewResource(R.id.home_crest, Utilities.getTeamCrestByTeamName(homeTeam));
             views.setImageViewResource(R.id.away_crest, Utilities.getTeamCrestByTeamName(awayTeam));
+
+            // Create an Intent to launch MainActivity
+            Intent launchIntent = new Intent(this, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, launchIntent, 0);
+            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
+
+            // Tell the AppWidgetManager to perform an update on the current app widget
+            appWidgetManager.updateAppWidget(appWidgetId, views);
+        }
+    }
+
+    private void showEmptyWidget(AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        // Perform this loop procedure for each Today widget
+        for (int appWidgetId : appWidgetIds) {
+            int layoutId = R.layout.widget_detail_empty;
+            RemoteViews views = new RemoteViews(getPackageName(), layoutId);
 
             // Create an Intent to launch MainActivity
             Intent launchIntent = new Intent(this, MainActivity.class);
