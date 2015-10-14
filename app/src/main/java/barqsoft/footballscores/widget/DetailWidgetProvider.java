@@ -39,6 +39,7 @@ public class DetailWidgetProvider extends AppWidgetProvider {
             Intent launchIntent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
             views.setOnClickPendingIntent(R.id.widget_empty, pendingIntent);
+            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
 
             // Tell the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
