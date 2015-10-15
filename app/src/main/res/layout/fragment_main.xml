@@ -19,6 +19,6 @@
             android:layout_height="match_parent"
             android:id = "@+id/scores_list"
             android:divider="@android:color/transparent"
-            android:dividerHeight="15sp" />
+            android:dividerHeight="@dimen/list_scores_dividerHeight" />
 
 </FrameLayout>

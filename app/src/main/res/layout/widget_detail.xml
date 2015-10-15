@@ -16,7 +16,7 @@
             android:id="@+id/widget_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:dividerHeight="4dp"
+            android:dividerHeight="@dimen/list_widget_dividerHeight"
             tools:listitem="@layout/widget_today_small"/>
 
         <TextView

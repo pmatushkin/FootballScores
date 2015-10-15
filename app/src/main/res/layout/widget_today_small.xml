@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/touch_selector_white"
-        android:paddingTop="5dp">
+        android:paddingTop="@dimen/widget_today_padding">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
