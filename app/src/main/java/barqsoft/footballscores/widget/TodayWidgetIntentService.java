@@ -16,7 +16,7 @@ import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.Utilities;
-import barqsoft.footballscores.scoresAdapter;
+import barqsoft.footballscores.ScoresAdapter;
 
 /**
  * Created by pmatushkin on 10/6/2015.
@@ -71,11 +71,11 @@ public class TodayWidgetIntentService extends IntentService {
         }
 
         // read the values from a cursor
-        String homeTeam = cursor.getString(scoresAdapter.COL_HOME);
-        String awayTeam = cursor.getString(scoresAdapter.COL_AWAY);
-        String matchTime = cursor.getString(scoresAdapter.COL_MATCHTIME);
-        int homeGoals = cursor.getInt(scoresAdapter.COL_HOME_GOALS);
-        int awayGoals = cursor.getInt(scoresAdapter.COL_AWAY_GOALS);
+        String homeTeam = cursor.getString(ScoresAdapter.COL_HOME);
+        String awayTeam = cursor.getString(ScoresAdapter.COL_AWAY);
+        String matchTime = cursor.getString(ScoresAdapter.COL_MATCHTIME);
+        int homeGoals = cursor.getInt(ScoresAdapter.COL_HOME_GOALS);
+        int awayGoals = cursor.getInt(ScoresAdapter.COL_AWAY_GOALS);
 
         cursor.close();
 
@@ -84,10 +84,13 @@ public class TodayWidgetIntentService extends IntentService {
             int layoutId = R.layout.widget_today_small;
             RemoteViews views = new RemoteViews(getPackageName(), layoutId);
 
+//            DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
             // Add the data to the RemoteViews
             views.setTextViewText(R.id.home_name, homeTeam);
             views.setTextViewText(R.id.away_name, awayTeam);
             views.setTextViewText(R.id.data_textview, matchTime);
+//            views.setTextViewText(R.id.data_textview, timeFormat.format(date));
             views.setTextViewText(R.id.score_textview, Utilities.getScores(homeGoals, awayGoals));
             views.setImageViewResource(R.id.home_crest, Utilities.getTeamCrestByTeamName(homeTeam));
             views.setImageViewResource(R.id.away_crest, Utilities.getTeamCrestByTeamName(awayTeam));

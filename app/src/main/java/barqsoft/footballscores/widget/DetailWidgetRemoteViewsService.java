@@ -18,7 +18,7 @@ import java.util.Date;
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.Utilities;
-import barqsoft.footballscores.scoresAdapter;
+import barqsoft.footballscores.ScoresAdapter;
 
 /**
  * Created by pmatushkin on 10/9/2015.
@@ -125,16 +125,20 @@ public class DetailWidgetRemoteViewsService extends RemoteViewsService {
                         R.layout.widget_today_small);
 
                 // read the values from a cursor
-                String homeTeam = data.getString(scoresAdapter.COL_HOME);
-                String awayTeam = data.getString(scoresAdapter.COL_AWAY);
-                String matchTime = data.getString(scoresAdapter.COL_MATCHTIME);
-                int homeGoals = data.getInt(scoresAdapter.COL_HOME_GOALS);
-                int awayGoals = data.getInt(scoresAdapter.COL_AWAY_GOALS);
+                String homeTeam = data.getString(ScoresAdapter.COL_HOME);
+                String awayTeam = data.getString(ScoresAdapter.COL_AWAY);
+                String matchTime = data.getString(ScoresAdapter.COL_MATCHTIME);
+                int homeGoals = data.getInt(ScoresAdapter.COL_HOME_GOALS);
+                int awayGoals = data.getInt(ScoresAdapter.COL_AWAY_GOALS);
+
+//                Date date = new Date(System.currentTimeMillis());
+//                DateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
                 // Add the data to the RemoteViews
                 views.setTextViewText(R.id.home_name, homeTeam);
                 views.setTextViewText(R.id.away_name, awayTeam);
                 views.setTextViewText(R.id.data_textview, matchTime);
+//                views.setTextViewText(R.id.data_textview, timeFormat.format(date));
                 views.setTextViewText(R.id.score_textview, Utilities.getScores(homeGoals, awayGoals));
                 views.setImageViewResource(R.id.home_crest, Utilities.getTeamCrestByTeamName(homeTeam));
                 views.setImageViewResource(R.id.away_crest, Utilities.getTeamCrestByTeamName(awayTeam));
